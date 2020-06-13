@@ -66,11 +66,11 @@ def main():
                         help="Time interval in seconds")
     # command line variable for Lower Limit In USD
     parser.add_argument("-l", "--lowerLimit", type=int, nargs=1,
-                        metavar="Lower Limit", default=[9600],
+                        metavar="Lower Limit", default=[9000],
                         help="Lower Limit In USD")
     # command line variable for Upper Limit In USD
     parser.add_argument("-u", "--upperLimit", type=int, nargs=1,
-                        metavar="Upper Limit", default=[9800],
+                        metavar="Upper Limit", default=[10000],
                         help="Upper Limit In USD")
     new_args = parser.parse_args()
     print('Running A Program with Interval of =',
