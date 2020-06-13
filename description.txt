@@ -1,0 +1,100 @@
+Bitcoin Price Notification by Amol Vaditake (Woodpecker batch)
+
+Bitcoin, the  world‟s most common and well known cryptocurrency, has been increasing in popularity.
+It has the same basic structure as it did when created in 2008, but repeat instances of the world
+market changing has created a new demand for cryptocurrencies much greater than its initial showing.
+By using a cryptocurrency, users are able to  exchange value digitally without third party oversight
+
+In this project I made a program to get latest bitcoin price. The general process is to run the
+code and then it'll fetch the data from a cryptocurrency API called of web https://api.coindesk.com 
+and then it'll show updated price in a public/private telegram channel and on My personal twitter account.
+For that i have used Python and a third party service called IFTTT to send the push notification.
+
+#Get the Bitcoin Price (GET Request):
+
+1. If you do not have python 3 version in your system then, you should update or install it first
+2. Then we have to import the requests module by importing pip and make a function price() .
+3. Now define the url form Where we need to fetch the latest price.
+4. Next, we will need a date with price (import date module).
+5. Then we will store the data in a variable response and later will extract the JSON data in 'data' variable.
+
+
+#Sending IFTTT Notification (POST Request):
+
+1. Now we can move onto the IFTTT side of things. To use IFTTT you’ll first need to set up a new account and
+install their mobile app (if you want to receive phone notifications from your Python app). 
+2. Once you set that up, we’re going to create a new IFTTT applet for the notification.
+3. To create a new test applet follow these steps:
+   1. Click on the big “this” button
+   2. Search for the “webhooks” service and select the “Receive a web request” trigger
+   3. Let’s name the event 'n'
+   4. Now select the big “that” button
+   5. For the action select the “Notifications” service and select the “Send a rich notification from the
+   IFTTT app” action.
+   6. Give it a title, like “n”
+   7. Set the message to Bitcoin price is at ${{Value2}}. and Status at ${{Value1}} 
+   To see the documentation on how to use the IFTTT webhooks go to the main applet page and click on the
+   “Documentation” button in the top right corner. The documentation page contains the webhook URL and it
+   looks like this:  "https://maker.ifttt.com/trigger/{event}/with/key/{your-IFTTT-key}"
+   8. Next up, you’ll need to substitute the {event} part with whatever name you gave our event in step 3,
+   when you created the applet. The {your-IFTTT-key} part is already populated with your IFTTT key. Now will make
+   a variable and will store the webhook url.
+4. Now whenever we call the post_ifttt_webhook function it'll trigger the notification.
+   The event parameter corresponds to whatever event name we gave to our trigger when setting up the
+   IFTTT applet. Also, the IFTTT webhooks allow us to send additional data along with the request as
+   JSON-formatted data.
+
+#Telegram notification update:
+
+1. Again choose the “webhooks” service and select the “Receive a web request” trigger
+2. Name the event telegram_notifier
+3. For the action select the “Telegram” service and select the “Send message” action
+4. Set the message text to: 
+      Status: {{Value1}} <br>
+      Latest bitcoin prices:<br>{{Value1}}
+5. Create the action and finish with the applet
+   To receive the notification in telegram, I created a public channel called Bitcoin 
+   Notification by Amol and gave the access to the IFTTT telegram bot and make it the 
+   administrative section.
+
+# Twitter notification update:
+
+1. Create New applet for Twitter also by following same steps.
+2. Again choose the “webhooks” service and select the “Receive a web request” trigger
+3. Name the event twitter_notifier
+4. For the action select the “twitter” service and select the “Send message” action
+5. Set the message text to: 
+      Status: {{Value1}} <br>
+      Latest bitcoin prices:<br>{{Value1}}
+6. Create the action and finish with the applet
+   To receive the notification in Twitter, I have used my personal account to send notification
+   named as amol17398. follow this account to get the notification
+
+# How Program Works:
+
+1. Now coming to the python console. We have to create two separate function to fetch the price
+   and to update that in our telegram channel and twitter account.
+2. For that in run function we took two separate function used first one is for fetch and second is for 
+   send notification .
+3. While getting the data from 'price()' under run function we are returning the value
+4. through 'twitter_notifier and twitter_notifier' applet which is triggering the Webhook 
+   notification by send_data function.
+5. And lastly the time sleep function imported from datetime package will take care of 
+   the current time and the time when we need the data.
+6. The only thing missing is the format_bitcoin_history function. It takes the bitcoin_history as an
+   argument and formats it using some of the basic HTML tags allowed by Telegram, like <br>, <b>, <i>,
+   and so on.
+
+#Command line utility:
+
+1. For command line utility we imported a package called argparse. 
+2. Where we added three argument, one for the interval we want and other two for lower and upper limit. 
+3. For each we gave default value which will be called if we failed to give any argument. 
+4. here threee 'add_argument' function are taking the values and at last we are passing all arguments in
+   a send_data function. 
+5. So when run function is being called we are calling two different function 'send_data()" for 
+   the notification and 'price()' for fetch the price form API.
+
+
+
+
