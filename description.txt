@@ -95,6 +95,7 @@ install their mobile app (if you want to receive phone notifications from your P
 5. So when run function is being called we are calling two different function 'send_data()" for 
    the notification and 'price()' for fetch the price form API.
 
+THANK YOU !!!
 
 
 
