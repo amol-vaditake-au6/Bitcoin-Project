@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-1. This Project will send notification of bitcoin latest price for every one hour.
+1. This Project will send notification of bitcoin latest price for every time interval.
 2. The notifications will be sent to telegram channel of link https://t.me/bitcoin_notification
 3. The notifications will be sent to twitter also on account of https://twitter.com/amol17398
 4. Used IFTTT for sending notification
