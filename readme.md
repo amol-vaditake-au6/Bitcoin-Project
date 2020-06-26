@@ -60,6 +60,6 @@ There are two ifttt applets used to get notification
 ```
 Watch this video for better understanding:
 
-Link--->
+Link---> https://drive.google.com/file/d/1YfY9MlFv_KTxF99BNoDWG6EdQjPkw75v/view?usp=sharing
 
 ```
